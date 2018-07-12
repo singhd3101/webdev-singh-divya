@@ -15,15 +15,12 @@ module.exports = function(app)
   if (process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely
     var username = process.env.MLAB_USERNAME_WEBDEV;
     var password = process.env.MLAB_PASSWORD_WEBDEV;
-    process.env.MONGOLAB_URI = process.env.MONGODB_URI;
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += '@ds135421.mlab.com:35421/heroku_nz4wrq1t';
-    console.log('connectionString - ');
-    console.log(connectionString);
   }
 
   var mongoose = require("mongoose");
-    mongoose.connect(connectionString);
+    mongoose.connect(process.env.MONGODB_URI);
 
     var TestSchema = mongoose.Schema({
         message: String
