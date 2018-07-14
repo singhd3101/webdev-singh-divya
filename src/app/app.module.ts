@@ -8,6 +8,10 @@ import {Routing} from './app.routing';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {TestService} from './services/test.service.client';
+import {UserService} from './services/user.service.client';
+import {PageService} from './services/page.service.client';
+import {WebsiteService} from './services/website.service.client';
+import {WidgetService} from './services/widget.service.client';
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -53,7 +57,7 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
     Routing
   ],
   // Client Side services here
-  providers: [ TestService],
+  providers: [ TestService, UserService, PageService, WebsiteService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
