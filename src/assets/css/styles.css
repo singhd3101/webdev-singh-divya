@@ -5,3 +5,12 @@
 body {
   padding-top: 40px;
 }
+
+.wd-widget .wd-toolbar {
+  position: absolute;
+  right: 0px;
+  background-color: grey;
+  padding: 7px;
+  border-bottom-left-radius: 10px;
+  opacity: 0.5;
+}
