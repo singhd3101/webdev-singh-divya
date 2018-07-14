@@ -8,9 +8,9 @@ import {Routing} from './app.routing';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {TestService} from './services/test.service.client';
-import { LoginComponent } from './components/user/src/app/components/user/login/login.component';
-import { ProfileComponent } from './components/user/src/app/components/user/profile/profile.component';
-import { RegisterComponent } from './components/user/src/app/components/user/register/register.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { RegisterComponent } from './components/user/register/register.component';
 
 @NgModule({
   // Declare components here
