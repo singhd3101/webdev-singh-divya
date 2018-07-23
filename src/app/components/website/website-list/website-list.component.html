@@ -1,3 +1,9 @@
-<p>
-  website-list works!
-</p>
+<h1>Website List</h1>
+
+{{websites.length}}
+
+<ul>
+  <li *ngFor="let website of websites">
+    {{website.name}}
+  </li>
+</ul>

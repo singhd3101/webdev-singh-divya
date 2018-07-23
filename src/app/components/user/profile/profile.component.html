@@ -1,1 +1,17 @@
 <h1>Profile</h1>
+
+userId : {{uid}}
+<h2>{{user.username}}</h2>
+
+<a href="/user/{{uid}}/website">Website</a>
+
+<br/>
+<label>Username</label>
+<input [(ngModel)]="user.username"/> <br/>
+<label>Password</label>
+<input [(ngModel)]="user.password" type="password"/> <br/>
+<label>FirstName</label>
+<input [(ngModel)]="user.firstName"/> <br/>
+<label>LastName</label>
+<input [(ngModel)]="user.lastName"/> <br/>
+<button (click)="updateUser(user)">Update</button>

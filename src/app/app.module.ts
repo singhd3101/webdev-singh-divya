@@ -9,6 +9,7 @@ import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {TestService} from './services/test.service.client';
 import {UserService} from './services/user.service.client';
+import {FlickrService} from './services/flickr.service.client';
 import {PageService} from './services/page.service.client';
 import {WebsiteService} from './services/website.service.client';
 import {WidgetService} from './services/widget.service.client';
@@ -27,6 +28,7 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
 import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { FlickerImageSearchComponent } from './components/widget/widget-edit/widget-image/flicker-image-search/flicker-image-search.component';
 
 @NgModule({
   // Declare components here
@@ -48,7 +50,8 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    FlickerImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
     Routing
   ],
   // Client Side services here
-  providers: [ TestService, UserService, PageService, WebsiteService, WidgetService],
+  providers: [ TestService, UserService, PageService, WebsiteService, WidgetService, FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
