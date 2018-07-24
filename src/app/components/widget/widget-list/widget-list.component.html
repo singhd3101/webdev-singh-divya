@@ -1,3 +1,5 @@
-<p>
-  widget-list works!
-</p>
+<h1>Widget List</h1>
+
+<div *ngFor="let w of widgets">
+  <app-widget-header [widget] = "w"></app-widget-header>
+</div>

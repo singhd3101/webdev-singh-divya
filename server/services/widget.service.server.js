@@ -30,7 +30,16 @@ random name to create the image urlfor the widgets url field, updated code
 can be found in widget-image.component.html*/
 
 module.exports = function (app) {
-  var multer = require('multer'); //npm install multer --save
+
+  var WIDGETS = require("./widget.mock");
+
+  app.get('/api/widget', findAllWidgets);
+
+  function findAllWidgets(req, res) {
+    res.send(WIDGETS);
+  }
+
+  /*var multer = require('multer'); //npm install multer --save
   var upload = multer({dest: _dirname + '/../../public/uploads'});
 
   app.post("/api/upload", upload.single('myFile'), uploadImage);
@@ -67,5 +76,5 @@ module.exports = function (app) {
       pageId : this.pageId;
       url: url
     };
-  }
+  }*/
 }
