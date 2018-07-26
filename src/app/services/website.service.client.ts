@@ -26,4 +26,20 @@ export class WebsiteService {
     });
     //return this.websites;
   }
+
+  createWebsite(uid, website) {
+    const url = 'http://localhost:3100/api/user/' + uid + '/website';
+    return this._http.post(url, website)
+    .map((res : Response) => {
+      return res.json();
+    });
+  }
+
+  deleteWebsite(uid, id) {
+    const url = 'http://localhost:3100/api/user/' + uid + '/website/' + id;
+    return this._http.delete(url)
+    .map((res : Response) => {
+      return res.json();
+    });
+  }
 }

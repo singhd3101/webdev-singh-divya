@@ -17,24 +17,39 @@ export class WebsiteListComponent implements OnInit {
     new Website("234","Youtube"),
     new Website("345","Gizmodo")
   ];*/
-
+  websiteName : String;
   websites: Website[];
-
+  uid: String;
   constructor(private service : WebsiteService, private activeRoute : ActivatedRoute) { }
 
   ngOnInit() {
     //this.websites = this.service.findAllWebsites();
     this.activeRoute.params.subscribe((params) => {
-      const uid = params['uid'];
-      console.log(uid);
+      this.uid = params['uid'];
+      console.log(this.uid);
       //async call
       //this.websites = this.service.findWebsitesForUser(uid);
 
       //sync call with promise
-      this.service.findWebsitesForUser(uid)
+      this.service.findWebsitesForUser(this.uid)
       .subscribe((websites) => {
         this.websites = websites;
       });
+    });
+  }
+
+  createWebsite(name){
+    const website : Website = new Website("",name,"",this.uid);
+    this.service.createWebsite(this.uid, website)
+    .subscribe((websites) => {
+      this.websites = websites;
+    });
+  }
+
+  deleteWebsite(id){;
+    this.service.deleteWebsite(this.uid, id)
+    .subscribe((websites) => {
+      this.websites = websites;
     });
   }
 
