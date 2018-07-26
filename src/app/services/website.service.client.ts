@@ -42,4 +42,20 @@ export class WebsiteService {
       return res.json();
     });
   }
+
+  findWebsiteById(uid, id){
+    const url = 'http://localhost:3100/api/user/' + uid + '/website/' + id;
+    return this._http.get(url)
+    .map((res : Response) => {
+      return res.json();
+    });
+  }
+
+  updateWebsite(uid, website){
+    const url = 'http://localhost:3100/api/user/' + uid + '/website/' + website._id;
+    return this._http.put(url, website)
+    .map((res : Response) => {
+      return res.json();
+    });
+  }
 }

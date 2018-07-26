@@ -1,16 +1,20 @@
-<h1>Website List</h1>
+<div> <h1>Website List</h1>
 
 <label>Website Name:</label>
 <input class="form-control" placeholder="name" [(ngModel)]="websiteName"/>
 <button class="btn btn-block btn-primary" (click)="createWebsite(websiteName)" >Create Website</button>
-
+<button class="btn btn-block btn-success" (click)="updateWebsite(websiteName)" >Update Website</button>
+<div>
 <ul class="list-group">
   <li *ngFor="let website of websites" class="list-group-item">
     {{website.name}}
     <a class="pull-right" (click)="deleteWebsite(website._id)">
       <span class="glyphicon glyphicon-remove"></span>
     </a>
+    <a class="pull-right" (click)="selectWebsite(website._id)">
+      <span class="glyphicon glyphicon-cog"></span>
+    </a>
   </li>
 </ul>
-
+</div>
 {{websiteName}}

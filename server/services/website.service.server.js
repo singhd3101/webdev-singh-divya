@@ -5,6 +5,8 @@ module.exports = function (app) {
   app.get("/api/user/:uid/website", findWebsiteForUser);
   app.post("/api/user/:uid/website", createWebsite);
   app.delete("/api/user/:uid/website/:wid", deleteWebsite);
+  app.get("/api/user/:uid/website/:wid", findWebsiteById);
+  app.put("/api/user/:uid/website/:wid", updateWebsite);
 
   /*var WEBSITES = [
     {_id:"123", name: "Facebook", description: "... 123", devloperId: "123"},
@@ -12,6 +14,31 @@ module.exports = function (app) {
     {_id:"345", name: "Wikipedia", description: "... 345", devloperId: "234"},
     {_id:"456", name: "Amazon", description: "... 456", devloperId: "234"}
   ];*/
+
+  function updateWebsite(req, res){
+    var wid = req.params['wid'];
+    var uid = req.params['uid'];
+    var website = req.body;
+    for(var i=0; i<WEBSITES.length; i++){
+      if(WEBSITES[i]._id === wid){
+        WEBSITES[i] = website;
+        var websites = getWebsiteForUserId(uid);
+        res.json(websites);
+        return;
+      }
+    }
+  }
+
+  function findWebsiteById(req, res){
+    var wid = req.params['wid'];
+    var uid = req.params['uid'];
+    for(var i=0; i<WEBSITES.length; i++){
+      if(WEBSITES[i]._id === wid){
+        res.json(WEBSITES[i]);
+        return;
+      }
+    }
+  }
 
   function deleteWebsite(req, res) {
     var wid = req.params['wid'];

@@ -20,6 +20,7 @@ export class WebsiteListComponent implements OnInit {
   websiteName : String;
   websites: Website[];
   uid: String;
+  website: Website;
   constructor(private service : WebsiteService, private activeRoute : ActivatedRoute) { }
 
   ngOnInit() {
@@ -48,6 +49,22 @@ export class WebsiteListComponent implements OnInit {
 
   deleteWebsite(id){;
     this.service.deleteWebsite(this.uid, id)
+    .subscribe((websites) => {
+      this.websites = websites;
+    });
+  }
+
+  selectWebsite(id) {
+    this.service.findWebsiteById(this.uid, id)
+    .subscribe((website) => {
+      this.website = website;
+      this.websiteName = this.website.name;
+    });
+  }
+
+  updateWebsite(name) {
+    const newWebsite = new Website(this.website._id,name,this.website.description,this.uid);
+    this.service.updateWebsite(this.uid, newWebsite)
     .subscribe((websites) => {
       this.websites = websites;
     });
