@@ -40,7 +40,8 @@ export class WebsiteListComponent implements OnInit {
   }
 
   createWebsite(name){
-    const website : Website = new Website("",name,"",this.uid);
+    //const website : Website = new Website("",name,"",this.uid);
+    const website = {name : name};
     this.service.createWebsite(this.uid, website)
     .subscribe((websites) => {
       this.websites = websites;

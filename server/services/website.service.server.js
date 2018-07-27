@@ -1,5 +1,7 @@
 module.exports = function (app) {
 
+  var websiteModel = require("../test-mongodb/website/website.model.server");
+
   var WEBSITES = require("./website.mock");
 
   app.get("/api/user/:uid/website", findWebsiteForUser);
@@ -56,10 +58,21 @@ module.exports = function (app) {
   function createWebsite(req, res){
     var uid = req.params['uid'];
     var website = req.body;
-    website._id = (new Date()).getTime() + "";
+    /*website._id = (new Date()).getTime() + "";
     WEBSITES.push(website);
     var websites = getWebsiteForUserId(uid);
-    res.json(websites);
+    res.json(websites);*/
+    website.developerId = uid;
+    websiteModel
+      .createWebsite(website)
+      .then(function (website) {
+        websiteModel.findWesbiteByUser(uid)
+          .then(function (websites) {
+            res.json(websites);
+          });
+      }, function(err){
+        console.log(err);
+      });
   }
 
   function findAllWebsites(req, res) {
@@ -69,8 +82,12 @@ module.exports = function (app) {
 
   function findWebsiteForUser(req, res) {
     var uid = req.params['uid'];
-    var websites = getWebsiteForUserId(uid);
-    res.json(websites);
+    /*var websites = getWebsiteForUserId(uid);
+    res.json(websites);*/
+    websiteModel.findWesbiteByUser(uid)
+      .then(function (websites) {
+        res.json(websites);
+      });
   }
 
   function getWebsiteForUserId(uid){
