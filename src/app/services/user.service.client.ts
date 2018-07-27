@@ -32,9 +32,16 @@ export class UserService {
   }
 
   findUserByUsername(username) {
-    return this.users.find(function (user){
+    /*return this.users.find(function (user){
       return user.username == username
-    });
+    });*/
+    console.log("user service client");
+    console.log(username);
+    return this._http.get('http://localhost:3100/api/user?username='+ username)
+    .map(
+      (response: Response) => {
+        return response.json();
+      });
   }
 
   findUserById(_id) {
@@ -57,14 +64,27 @@ export class UserService {
     });
   }
 
-  updateUser(user: User) {
-    console.log("inside service client");
-    for(let i=0; i<this.users.length; i++){
+  updateUser(user : User) {
+    console.log("inside update service client");
+    /*for(let i=0; i<this.users.length; i++){
       const _user = this.users[i];
       if (_user._id === user._id) {
         this.users[i].firstName = user.firstName;
         this.users[i].lastName = user.lastName;
       }
-    }
+    }*/
+    const url = 'http://localhost:3100/api/user/' + user._id;
+    return this._http.put(url, user)
+    .map((response: Response) => {
+      return response.json();
+    });
+  }
+
+  createUser(user) {
+    const url = 'http://localhost:3100/api/user/';
+    return this._http.post(url, user)
+    .map((response: Response) => {
+      return response.json();
+    });
   }
 }

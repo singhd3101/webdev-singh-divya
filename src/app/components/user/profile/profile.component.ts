@@ -27,7 +27,13 @@ export class ProfileComponent implements OnInit {
 
   updateUser(user){
     console.log("inside update profile");
-    this.service.updateUser(user);
+    //this.service.updateUser(user);
+    this.service
+      .updateUser(user)
+      .subscribe((user) => {
+        this.user = user;
+        this.ngOnInit();
+      });
   }
 
 }

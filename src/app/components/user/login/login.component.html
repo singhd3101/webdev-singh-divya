@@ -1,11 +1,11 @@
 
   <h1>Login</h1>
   <label>Username</label>
-  <input [(ngModel)] = "username" placeholder="alice"/>
+  <input [(ngModel)] = "username" placeholder="alice" class="form-control"/>
   <br/>
   <label>Password</label>
-  <input [(ngModel)] = "password" type="password" placeholder="1213121"/>
+  <input [(ngModel)] = "password" type="password" placeholder="1213121" class="form-control"/>
   <br/>
-  <button (click)=login(username,password)>Login</button>
+  <button (click)=login(username,password) class="btn btn-primary btn-block">Login</button>
   <br>
 <a routerLink="/register">Register</a>

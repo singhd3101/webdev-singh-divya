@@ -1,14 +1,22 @@
 
   <h1>Register</h1>
+  <label>First Name</label>
+  <input placeholder="Alice" [(ngModel)]="firstName" class="form-control"/>
+  <br/>
+  <label>Last Name</label>
+  <input placeholder="Wonder" [(ngModel)]="lastName" class="form-control"/>
+  <br/>
   <label>Username</label>
-  <input placeholder="alice"/>
+  <input placeholder="alice" [(ngModel)]="username" class="form-control"/>
   <br/>
   <label>Password</label>
-  <input type="password" placeholder="1213121"/>
+  <input type="password" [(ngModel)]="password" placeholder="1213121" class="form-control"/>
   <br/>
   <label>Confirm Password</label>
-  <input type="password" placeholder="1213121"/>
+  <input type="password" placeholder="1213121" class="form-control"/>
   <br/>
-  <button>Register</button>
+  <button (click)=findUserByUsername(username) class="btn btn-primary btn-block">Register</button>
   <br>
   <a routerLink="/login">Login</a>
+
+  {{username}}
