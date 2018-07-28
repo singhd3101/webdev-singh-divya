@@ -13,6 +13,8 @@ import { FlickrService } from './services/flickr.service.client';
 import { PageService } from './services/page.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { WidgetService } from './services/widget.service.client';
+import { SharedService } from './services/shared.service.client';
+import { AuthenticationService } from './services/authentication.service.client';
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RegisterComponent } from './components/user/register/register.component';
@@ -60,7 +62,7 @@ import { FlickerImageSearchComponent } from './components/widget/widget-edit/wid
     Routing
   ],
   // Client Side services here
-  providers: [ TestService, UserService, PageService, WebsiteService, WidgetService, FlickrService],
+  providers: [ TestService, UserService, PageService, WebsiteService, WidgetService, FlickrService, SharedService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

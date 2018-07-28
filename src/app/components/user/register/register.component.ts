@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service.client';
+import { SharedService } from '../../../services/shared.service.client';
 import { User } from '../../../models/user.model.client';
 
 @Component({
@@ -15,13 +16,14 @@ export class RegisterComponent implements OnInit {
   firstName: String;
   lastName: String;
 
-  constructor(private router: Router, private service: UserService) { }
+  constructor(private router: Router, private service: UserService,
+              private sharedService : SharedService) { }
 
   ngOnInit() {
   }
 
-  findUserByUsername(username) {
-    this.service.findUserByUsername(username)
+  register() {
+    /*this.service.findUserByUsername(username)
     .subscribe((user : User) => {
       if(user === null){
         const newuser = {
@@ -36,7 +38,12 @@ export class RegisterComponent implements OnInit {
              this.router.navigate(['/user',userfromserver._id]);
            });
       }
-    });
+    });*/
+    this.service.register(this.username, this.password)
+      .subscribe((user) => {
+        this.sharedService.user = user;
+        this.router.navigate(['/user',user._id]);
+      });
   }
 
 }

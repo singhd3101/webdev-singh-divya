@@ -1,9 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { User } from '../models/user.model.client';
 import { Observable} from 'rxjs/Rx';
+import { SharedService } from './shared.service.client';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -15,8 +17,9 @@ export class UserService {
   ];
 
   baseUrl = environment.baseUrl;
+  options : RequestOptions = new RequestOptions();
 
-  constructor(private _http: Http) {
+  constructor(private router : Router, private sharedService : SharedService, private _http: Http) {
   }
 
   findUserByCredentials(username, password) {
@@ -35,8 +38,6 @@ export class UserService {
     /*return this.users.find(function (user){
       return user.username == username
     });*/
-    console.log("user service client");
-    console.log(username);
     return this._http.get('http://localhost:3100/api/user?username='+ username)
     .map(
       (response: Response) => {
@@ -86,5 +87,56 @@ export class UserService {
     .map((response: Response) => {
       return response.json();
     });
+  }
+
+  register(username, password) {
+    const url = 'http://localhost:3100/api/register/';
+    const credentials = {
+      username : username,
+      password : password
+    };
+    this.options.withCredentials = true;
+    return this._http.post(url, credentials, this.options)
+      .map((res : Response) => {
+        return res.json();
+      });
+  }
+
+  login(username, password) {
+    const url = 'http://localhost:3100/api/login/';
+    const credentials = {
+      username : username,
+      password : password
+    };
+    this.options.withCredentials = true;
+    return this._http.post(url, credentials, this.options)
+      .map((res : Response) => {
+        return res.json();
+      });
+  }
+
+  loggedIn() {
+    const url = 'http://localhost:3100/api/loggedIn/';
+    this.options.withCredentials = true;
+    return this._http.post(url, '', this.options)
+      .map((res : Response) => {
+        const user = res.json();
+        if(user !== 0) {
+          this.sharedService.user = user;
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      });
+  }
+
+  logout(){
+    const url = 'http://localhost:3100/api/logout/';
+    this.options.withCredentials = true;
+    return this._http.post(url, '', this.options)
+      .map((res : Response) => {
+        return res;
+      });
   }
 }

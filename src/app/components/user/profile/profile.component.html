@@ -1,17 +1,18 @@
 <h1>Profile</h1>
 
 userId : {{uid}}
-<h2>{{user.username}}</h2>
+<h2>{{username}}</h2>
 
 <a href="/user/{{uid}}/website">Website</a>
 
 <br/>
 <label>Username</label>
-<input [(ngModel)]="user.username"/> <br/>
+<input [(ngModel)]="user.username" class="form-control"/> <br/>
 <label>Password</label>
-<input [(ngModel)]="user.password" type="password"/> <br/>
+<input [(ngModel)]="user.password" type="password" class="form-control"/> <br/>
 <label>FirstName</label>
-<input [(ngModel)]="user.firstName"/> <br/>
+<input [(ngModel)]="user.firstName" class="form-control"/> <br/>
 <label>LastName</label>
-<input [(ngModel)]="user.lastName"/> <br/>
-<button (click)="updateUser(user)">Update</button>
+<input [(ngModel)]="user.lastName" class="form-control"/> <br/>
+<button (click)="updateUser(user)" class="btn btn-primary btn-block">Update</button> <br/>
+<button (click)=logout() class="btn btn-danger btn-block">Logout</button>
